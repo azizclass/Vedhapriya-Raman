@@ -1,0 +1,26 @@
+From 9c4020bbb227fc61209f623bb7886c6e341ee68f Mon Sep 17 00:00:00 2001
+From: Vedha Raman <vedhapriya.raman@utexas.edu>
+Date: Sat, 19 Sep 2015 21:42:20 -0500
+Subject: [PATCH] Modified to create patch
+
+---
+ lab1_git/HelloWorld/HelloWorld.java | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/lab1_git/HelloWorld/HelloWorld.java b/lab1_git/HelloWorld/HelloWorld.java
+index 747e370..4c15ca5 100644
+--- a/lab1_git/HelloWorld/HelloWorld.java
++++ b/lab1_git/HelloWorld/HelloWorld.java
+@@ -1,6 +1,6 @@
+ public class HelloWorld {
+ 	public static void main( String [] args){
+-		System.out.println("Hello World!");
++		System.out.println("Hallo Welt!");
+ 	}
+ 
+-}
+\ No newline at end of file
++}
+-- 
+2.5.3
+

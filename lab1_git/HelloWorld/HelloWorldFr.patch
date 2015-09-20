@@ -1,0 +1,24 @@
+From 7029a966da27f1546d5e4e94f0fc9466f6809613 Mon Sep 17 00:00:00 2001
+From: Vedha Raman <vedhapriya.raman@utexas.edu>
+Date: Sat, 19 Sep 2015 22:04:45 -0500
+Subject: [PATCH] Modified to create French patch
+
+---
+ lab1_git/HelloWorld/HelloWorld.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lab1_git/HelloWorld/HelloWorld.java b/lab1_git/HelloWorld/HelloWorld.java
+index 4c15ca5..2e2281e 100644
+--- a/lab1_git/HelloWorld/HelloWorld.java
++++ b/lab1_git/HelloWorld/HelloWorld.java
+@@ -1,6 +1,6 @@
+ public class HelloWorld {
+ 	public static void main( String [] args){
+-		System.out.println("Hallo Welt!");
++		System.out.println("Bonjour, monde");
+ 	}
+ 
+ }
+-- 
+2.5.3
+
