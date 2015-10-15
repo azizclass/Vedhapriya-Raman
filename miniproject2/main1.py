@@ -119,7 +119,7 @@ function myFunction(){
         </td>
     </tr>
     <tr style="height:20px;"></tr>
-    <tr><td><input type="submit" id="btnCreateStream" value="Create Stream" onclick="return myFunction()"></td></tr>
+    <tr><td><input type="submit" id="btnCreateStream" class="btn btn-primary start" value="Create Stream" onclick="return myFunction()"></td></tr>
 </table>
 
 </form>
@@ -367,8 +367,8 @@ font-style: italic;}
 <form method="post">
 <div style = "height:20px";></div>
 <table><td><input type="text" id="keyword" name="searchStreamId" placeholder="Search Streams" style="width:160px"></td>
-<td><input type="submit" name="btnSearchStream" value="Search"></td>
-<td><input type="submit" name="btnSearchStream" value="Rebuild completion index"></td></table>
+<td><input type="submit" name="btnSearchStream" class="btn btn-primary start" value="Search"></td>
+<td><input type="submit" name="btnSearchStream" class="btn btn-primary start" value="Rebuild completion index"></td></table>
 </form>
 </body></html>
 """
@@ -571,48 +571,7 @@ $(function() {
 </body>
 </html>
 """
-delPicStream = """
-<html><head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-      $("#deletepic").click(function(){
-        var piclist = $('input[name="delPicStream"]:checked').map(function(){
-            return $(this).val();
-        }).get();
-        alert(piclist);
-       if(piclist.length == 0)
-       {
-        alert("No checkboxes selected");
-       }
-       else
-       {
-         $.ajax({
-                type: "POST",
-                url: "/delete_each",
-                data: JSON.stringify(piclist),
-                contentType: "application/json",
-                dataType: 'json',
-            success: function(){
-            alert("Delete Successful");
-            $('input:checkbox').removeAttr('checked');
-            window.location.reload();
-         }
-        });
-        }
-      });
-    });
-    </script>
-    <body>
-    <div style="margin-left:10px;height:40px;">
-    <button data-dz-remove class="btn btn-danger delete" id="deletepic">
-<i class="glyphicon glyphicon-trash"></i>
-<span>Delete</span>
-</button>
-</div>
-"""
+
 class Image(ndb.Model):
      img = ndb.BlobProperty()
      comments = ndb.StringProperty()
@@ -698,7 +657,7 @@ class ManagePage(webapp2.RequestHandler):
         for stream in q:
             self.response.write('<tr><td><a href="/view?s=%s">%s</a></td><td>%s</td><td>%s</td><td><input type="checkbox" value=%s name="del_checked"/></td></tr>' % (stream.name,stream.name,stream.datetime.strftime('%m/%d/%Y'),stream.numpics,stream.name))
         self.response.write('</table><br>')
-        self.response.write('<input type="submit" value="Delete Checked" id="del_stream"/>')
+        self.response.write('<input type="submit" value="Delete Checked" class="btn btn-primary start" id="del_stream"/>')
         self.response.write('<h4>Streams I subscribe to</h4><table><thead><th>Name</th><th>Last New Picture</th><th>Number of Pictures</th><th>Views</th><th>Unsubscribe</th></thead>')
         user_to_remove = users.get_current_user().email()
         for subscribe_list in q:
@@ -706,7 +665,7 @@ class ManagePage(webapp2.RequestHandler):
                 if(user_to_remove == emails):
                     self.response.write('<tr><td><a href="/view?s=%s">%s</a></td><td>%s</td><td>%s</td><td>%s</td><td><input type="checkbox" value=%s name="unsubscribe_checked"/></td></tr>' % (subscribe_list.name,subscribe_list.name,subscribe_list.datetime.strftime('%m/%d/%Y'),subscribe_list.numpics,subscribe_list.views,subscribe_list.name))
         self.response.write('</table><br>')
-        self.response.write('<input type="submit" value="Unsubscribe Checked Streams" id="unsub_stream"/>')
+        self.response.write('<input type="submit" value="Unsubscribe Checked Streams" class="btn btn-primary start" id="unsub_stream"/>')
         self.response.write('</div></body></html>')
         
 class Deletesublist(webapp2.RequestHandler):
@@ -899,13 +858,9 @@ class ViewStream(webapp2.RequestHandler):
            st = self.request.get('ss')
            stream = Stream.query(Stream.name == st).get()
            n = stream.name
-        self.response.out.write(delPicStream)
         self.response.out.write('<div style="margin-left:10px;"><table><tr>')
         for pic in stream.pics:
-            image_indx = int(stream.pics.index(pic))
-            image_k = stream.keys[image_indx]
-            image_key = ndb.Key(image_k.kind(),image_k.id())
-            htmlimg = '<td><table><tr><td><img src="/imag?key=%s&ind=%s" style="float: left; width: 200px; margin-right: 30px; margin-bottom: 0.5em;"></td></tr><tr><td><input type="checkbox" name="delPicStream" style="width:30px;height:20px;" value=%s></td></tr></table></td>' % (stream.key.urlsafe(), stream.pics.index(pic), image_key.urlsafe())
+            htmlimg = '<td><table><tr><td><img src="/imag?key=%s&ind=%s" style="float: left; width: 200px; margin-right: 30px; margin-bottom: 0.5em;"></td></tr></table></td>' % (stream.key.urlsafe(), stream.pics.index(pic))
             self.response.out.write(htmlimg)
         self.response.out.write('</tr></table></div></body></html>')
             
@@ -965,14 +920,14 @@ Dropzone.autoDiscover = false;
 <input type="submit" name="action" value="Geo view" class="btn btn-danger delete">
 </div>
 </form>
-<div style="height:310px;"></div>
+<div style="height:210px;"></div>
 <div id="dZUpload" class="dropzone">
-      <div class="dz-message data-dz-message">Drop Files here or click to Upload</div>
-</div>
+      <div class="dz-message data-dz-message"><p style="font-size:25px;font-style:italic;">Drop Files here or click to Upload</p></div>
+</div><br>
 <div>
 <button class="btn btn-primary start">
 <i class="glyphicon glyphicon-upload"></i>
-<span>Start Uplaod</span>
+<span>Start Upload</span>
 </button>
 <button data-dz-remove class="btn btn-warning cancel">
 <i class="glyphicon glyphicon-ban-circle"></i>
@@ -1048,14 +1003,6 @@ class MapView(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = "application/json"
         self.response.headers['Accept'] = "text/plain"
         self.response.write(json.dumps(result))
-
-class DeleteFromStream(webapp2.RequestHandler):
-    def post(self):
-        pdata = json.loads(cgi.escape(self.request.body))
-        for checked_pic in pdata:
-            checked_pic_new = checked_pic.encode('utf-8')
-            pic_to_delete = Image.query(Image.key == ndb.Key(urlsafe=checked_pic_new)).get()
-            pic_to_delete.key.delete()
 
 class Trending(webapp2.RequestHandler):
     def get(self):
@@ -1221,7 +1168,6 @@ app = webapp2.WSGIApplication([
     ('/Manage', ManagePage),
     ('/delete_checked', DeleteStream),
     ('/delete_unsub', Deletesublist),
-    ('/delete_each', DeleteFromStream),
     ('/Search', SearchStream),
     ('/Error', ErrorPage),
     ('/view', ViewStream),
