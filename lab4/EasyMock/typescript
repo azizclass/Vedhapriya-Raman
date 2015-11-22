@@ -1,0 +1,9 @@
+C:\Testing\JUnit>java -cp C:\Testing\JUnit\junit-4.11.jar;.;C:\Testing\JUnit\eas
+ymock-3.0.jar;C:\Testing\JUnit\objenesis-tck-1.2.jar;C:\Testing\JUnit\cglib-node
+p-2.2.2.jar;C:\Testing\JUnit\hamcrest-core-1.3.jar org.junit.runner.JUnitCore Te
+stMp3Player
+JUnit version 4.11
+...
+Time: 0.016
+
+OK (3 tests)
