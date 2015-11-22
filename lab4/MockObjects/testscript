@@ -1,0 +1,6 @@
+C:\Testing\JUnit>java -cp C:\Testing\JUnit\junit-4.11.jar;C:\Testing\JUnit\mocko
+bjects-0.6-core.jar;C:\Testing\JUnit\mockobjects-0.6-j1.4-j2ee1.2.jar;C:\Testing
+\JUnit\selenium-server-standalone-2.11.0.jar;C:\Testing\Junit\guava-10.0.1.jar;C
+:\Testing\JUnit\javax.servlet.jar;. TestingLabConverterServlet
+response.getOutputStreamContents()= Fahrenheit: 212, Celsius: 100.0, Austin Temp
+erature in Farenheit: 451
