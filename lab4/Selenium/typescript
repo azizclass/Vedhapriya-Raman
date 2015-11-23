@@ -1,0 +1,34 @@
+.Testing if passwords are case sensitive
+Credentials entered for username/password: andy/ApPLE
+Credentials entered for username/password: bob/baThTub
+Credentials entered for username/password: charley/CHiNa
+All testcases with incorrect password were blocked. Testcases passed!
+
+.Testing with correct usernammes and passwords
+Credentials entered for username/password: andy/apple
+Credentials entered for username/password: bob/bathtub
+Credentials entered for username/password: charley/china
+All testcases with correct usernames and passwords passed!
+
+.Testing if usernames are case insensitive
+Credentials entered for username/password: Andy/apple
+Credentials entered for username/password: BoB/bathtub
+Credentials entered for username/password: CHarley/china
+All testcases with usernames(with incorrect case) passed!
+
+.Testing temperature conversion for two places of precision
+Expected Temperature: -17.78 / Result: -17.78
+Expected Temperature: 10 / Result: 10
+Expected Temperature: 23.89 / Result: 23.89
+Expected Temperature: 32.22 / Result: 32.22
+Expected Temperature: 37.78 / Result: 37.78
+Expected Temperature: 65.56 / Result: 65.56
+Expected Temperature: 93.33 / Result: 93.33
+Expected Temperature: 121.1 / Result: 121.1
+Expected Temperature: 148.9 / Result: 148.9
+All temperature precision testcases passed!
+
+
+Time: 57.845
+
+OK (4 tests)
