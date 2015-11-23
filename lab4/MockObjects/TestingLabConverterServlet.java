@@ -14,7 +14,6 @@ import org.junit.Test;
 
 public class TestingLabConverterServlet extends HttpServlet {
     
-    
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
@@ -74,17 +73,15 @@ public class TestingLabConverterServlet extends HttpServlet {
     }
 
     @Test
-    public static void main(String[] args)  throws Exception {
+    public void test_Austin() throws Exception {
         TestingLabConverterServlet s = new TestingLabConverterServlet();
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
+    
         request.setupAddParameter("farenheitTemperature", "212");
         response.setExpectedContentType("text/html");
         s.doGet(request,response);
         response.verify();
-        System.out.println("response.getOutputStreamContents()= "+response.getOutputStreamContents().trim());
         assertEquals("Fahrenheit: 212, Celsius: 100.0, Austin Temperature in Farenheit: 451", response.getOutputStreamContents().trim());
     }
-    
-    
 }
